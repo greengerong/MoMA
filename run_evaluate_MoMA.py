@@ -27,7 +27,7 @@ args.load_8bit, args.load_4bit = False, False
 
 
 #load MoMA from HuggingFace. Auto download
-moMA_main_modal = MoMA_main_modal(args).to(args.device, dtype=torch.bfloat16)
+moMA_main_modal = MoMA_main_modal(args).to(args.device, dtype=torch.float16)
 
 
 # reference image and its mask
