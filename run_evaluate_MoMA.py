@@ -8,6 +8,7 @@ from model_lib.modules import MoMA_main_modal
 from model_lib.utils import parse_args
 warnings.filterwarnings('ignore') 
 
+os.environ["CUDA_VISIBLE_DEVICES"]="0"
 
 seed_everything(0)
 args = parse_args()
@@ -53,8 +54,3 @@ moMA_main_modal = MoMA_main_modal(args).to(args.device, dtype=args.dtype)
 def run_moma(subject:str, prompt:str,rgb_path:str, mask_path:str):
   generated_image = moMA_main_modal.generate_images(rgb_path, mask_path, subject, prompt, strength=1.0, seed=2, return_mask=True)  # set strength to 1.0 for more accurate details
   return generated_image
-
-
-
-
-
