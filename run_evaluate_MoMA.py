@@ -13,6 +13,8 @@ seed_everything(0)
 args = parse_args()
 
 args.device = torch.device("cuda", 0)
+# args.dtype = torch.bfloat16
+args.dtype = torch.float16
 
 
 # if you have 22 Gb GPU memory:
@@ -27,7 +29,7 @@ args.load_8bit, args.load_4bit = False, False
 
 
 #load MoMA from HuggingFace. Auto download
-moMA_main_modal = MoMA_main_modal(args).to(args.device, dtype=torch.float16)
+moMA_main_modal = MoMA_main_modal(args).to(args.device, dtype=args.dtype)
 
 
 # reference image and its mask
