@@ -76,6 +76,7 @@ class MoMA_main_modal(nn.Module):
         super().__init__()
         self.args = args
         self.device = args.device
+        self.dtype = args.dtype
 
         self.moMA_generator = MoMA_generator(self.device,args)
         self.unet = self.moMA_generator.pipe.unet
@@ -87,7 +88,7 @@ class MoMA_main_modal(nn.Module):
         
         add_function(self.model_llava)
 
-        self.mapping = LlamaMLP_mapping(4096,1024).to(self.device, dtype=torch.bfloat16)
+        self.mapping = LlamaMLP_mapping(4096,1024).to(self.device, dtype=self.dtype)
         self.load_saved_components()
         self.freeze_modules()
 
@@ -143,7 +144,7 @@ class MoMA_main_modal(nn.Module):
         num = 1 if return_mask else num
         results = []
         for sample_id in range(num):
-            with torch.cuda.amp.autocast(enabled=True, dtype=torch.bfloat16, cache_enabled=True):
+            with torch.cuda.amp.autocast(enabled=True, dtype=self.dtype, cache_enabled=True):
                 with torch.no_grad(): 
                     
                     ### key steps
