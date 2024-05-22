@@ -51,4 +51,5 @@ moMA_main_modal = MoMA_main_modal(args).to(args.device, dtype=args.dtype)
 # generated_image = moMA_main_modal.generate_images(rgb_path, mask_path, subject, prompt, strength=0.4, seed=4, return_mask=True)  # set strength to 0.4 for better prompt fidelity
 # save_image(generated_image,f"{args.output_path}/{subject}_{prompt}.jpg")
 
-return moMA_main_modal
+def get_moma_model():
+  return moMA_main_modal
