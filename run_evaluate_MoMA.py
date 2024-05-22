@@ -19,13 +19,13 @@ args.dtype = torch.float16
 
 
 # if you have 22 Gb GPU memory:
-args.load_8bit, args.load_4bit = False, False
+# args.load_8bit, args.load_4bit = False, False
 
 # if you have 18 Gb GPU memory:
 # args.load_8bit, args.load_4bit = True, False
 
 # if you have 14 Gb GPU memory:
-# args.load_8bit, args.load_4bit = False, True
+args.load_8bit, args.load_4bit = False, True
 
 
 
